@@ -3,18 +3,16 @@ import { connect } from 'cloudflare:sockets';
 
 // How to generate your own UUID:
 // [Windows] Press "Win + R", input cmd and run:  Powershell -NoExit -Command "[guid]::NewGuid()"
-let userID = '641cb47f-5ed3-43f2-9905-b5c4727d9fc4';
+let userID = "641cb47f-5ed3-43f2-9905-b5c4727d9fc4";
 
-const proxyIPs = ['23.162.136.169'];
+const proxyIP = "23.162.136.169";
 
-let proxyIP = proxyIPs[Math.floor(Math.random() * proxyIPs.length)];
-
-let dohURL = 'https://cloudflare-dns.com/dns-query'; // https://cloudflare-dns.com/dns-query or https://dns.google/dns-query
+let dohURL = "https://cloudflare-dns.com/dns-query"; // https://cloudflare-dns.com/dns-query or https://dns.google/dns-query
 
 // v2board api environment variables (optional) deprecated, please use planetscale.com instead
 
 if (!isValidUUID(userID)) {
-	throw new Error('uuid is invalid');
+	throw new Error("uuid is invalid");
 }
 
 export default {
@@ -820,7 +818,7 @@ function createVLESSSub(userID_Path, hostName) {
 				const vlessMainHttp = `vless://${userID}@${hostName}${commonUrlPart_http}`;
 
 				// For each proxy IP, generate a VLESS configuration and add to output
-				proxyIPs.forEach((proxyIP) => {
+				proxyIP.forEach((proxyIP) => {
 					const vlessSecHttp = `vless://${userID}@${proxyIP}${commonUrlPart_http}-${proxyIP}-EDtunnel`;
 					output.push(`${vlessMainHttp}`);
 					output.push(`${vlessSecHttp}`);
@@ -833,7 +831,7 @@ function createVLESSSub(userID_Path, hostName) {
 			const vlessMainHttps = `vless://${userID}@${hostName}${commonUrlPart_https}`;
 
 			// For each proxy IP, generate a VLESS configuration and add to output
-			proxyIPs.forEach((proxyIP) => {
+			proxyIP.forEach((proxyIP) => {
 				const vlessSecHttps = `vless://${userID}@${proxyIP}${commonUrlPart_https}-${proxyIP}-EDtunnel`;
 				output.push(`${vlessMainHttps}`);
 				output.push(`${vlessSecHttps}`);
